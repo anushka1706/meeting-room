@@ -32,6 +32,7 @@ export class ViewBookingComponent implements OnInit {
     const date = this.selectedDate.toDateString()
     if (this.selectedDate && this.selectedRoom) {
       this.results = this.allBooking.filter(bookings => bookings['roomId'] === this.selectedRoom && bookings['date'] === date)
+      this.results = this.results.filter(b => b.bookedSlots?.length > 0)
       this.canCancel()
     }
   }
@@ -39,6 +40,7 @@ export class ViewBookingComponent implements OnInit {
     this.roomListService.cancelSlot(slot, booking)
     this.bookingService.cancelSlot(slot, booking)
     this.results = this.results.filter(b => b.bookedSlots?.length > 0)
+    console.log(this.results)
   }
   canCancel() {
     const now = new Date()
