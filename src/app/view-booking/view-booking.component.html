@@ -1,0 +1,50 @@
+<div class="booking-details">
+  <div class="filter">
+    <div class="field">
+      <mat-form-field>
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="field">
+      <mat-form-field>
+        <mat-label>Select Room </mat-label>
+        <mat-select [(ngModel)]="selectedRoom">
+          <mat-option *ngFor="let room of allRooms" [value]="room['id']">{{
+            room["name"]
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" (click)="showResult()">
+      Get bookings
+    </button>
+  </div>
+  <div class="results" *ngIf="results.length > 0">
+    <div class="booking-item" *ngFor="let booking of results">
+      <div *ngIf="booking.bookedSlots?.length > 0">
+        <p class="label">{{ booking["roomName"] }}</p>
+        <p class="label">Booked by : {{ booking["name"] }}</p>
+        <p class="label">
+          Booked at : {{ booking["date"] }} {{ booking["time"] }}
+        </p>
+        <p class="label slot-wrapper">
+          Time slot:
+          <span class="slots" *ngFor="let slot of booking.bookedSlots">
+            {{ slot }}
+            <button
+              mat-button
+              color="warn"
+              [disabled]="!booking[slot]"
+              (click)="onCancel(slot, booking)"
+            >
+              Cancel
+            </button>
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

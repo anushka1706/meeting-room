@@ -1,0 +1,73 @@
+<div class="view-room-card">
+  <div class="room-details">
+    <div class="info">
+      <p class="label">
+        {{ room["name"] }} . Capacity
+        {{ room["capacity"] }} person
+      </p>
+    </div>
+    <img [src]="room['imageUrl']" alt="" class="image" />
+  </div>
+  <div class="right-content">
+    <p class="label-2">What we Offer</p>
+    <div class="features-wrapper">
+      <div class="feature" *ngFor="let features of room['features']">
+        <div class="feature-item">
+          <mat-icon>{{ icons[features] }}</mat-icon
+          >{{ features }}
+        </div>
+      </div>
+    </div>
+    <div class="booking">
+      <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+        <div class="fields">
+          <mat-form-field>
+            <mat-label>Choose a date</mat-label>
+            <input
+              (dateChange)="showTimeSlot($event)"
+              matInput
+              [matDatepicker]="picker"
+              formControlName="date"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="fields" *ngIf="showSlots">
+          <mat-label>Pick a slot</mat-label>
+          <div class="slots">
+            <mat-checkbox
+              *ngFor="let slot of allSlots"
+              [disabled]="!availableSlots.includes(slot) || disabledSlots.includes(slot)"
+              (change)="onCheckboxSelect(slot, $event.checked)"
+            >
+              {{ slot }}
+            </mat-checkbox>
+          </div>
+        </div>
+        <div class="field">
+          <mat-form-field>
+            <mat-label>Booked By</mat-label>
+            <input formControlName="name" matInput type="text" name="" id="" />
+          </mat-form-field>
+        </div>
+        <div class="field">
+          <mat-form-field>
+            <mat-label>Purpose</mat-label>
+            <mat-select formControlName="purpose">
+              <mat-option *ngFor="let option of purpose" [value]="option">{{
+                option
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <button mat-raised-button color="accent" type="submit">
+          Book now
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

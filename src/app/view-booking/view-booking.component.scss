@@ -1,0 +1,63 @@
+.booking-details {
+  height: 100%;
+  max-height: 100%;
+  width: 100%;
+  padding: 2rem;
+}
+.filter {
+  display: flex;
+  border-radius: 10px;
+  justify-content: center;
+  gap: 2rem;
+  align-items: center;
+}
+.field {
+  height: 50px;
+  align-self: center;
+}
+.slots {
+  font-size: 1.5rem;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 5px;
+  background-color: rgb(246, 246, 246);
+}
+.label {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.slot-wrapper {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  gap: 5px;
+}
+.booking-item {
+  padding: 1rem;
+  border-radius: 7px;
+  background-color: rgb(223, 223, 226);
+  width: fit-content;
+  height: fit-content;
+}
+.results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 0rem 2rem;
+  height: 100%;
+  max-height: 90%;
+  margin-top: 4rem;
+  overflow: auto;
+}
+.cancel-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: white;
+  font-weight: 500;
+  padding: 5px;
+  background-color: rgb(209, 63, 63);
+}

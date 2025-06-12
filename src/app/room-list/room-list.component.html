@@ -1,0 +1,70 @@
+<div class="view-room-container">
+  <div class="filters-panel">
+    <div class="actions">
+      <span class="heading">Filters</span>
+      <button class="reset-btn" (click)="reset()">Reset All</button>
+    </div>
+    <div class="filter-options">
+      <div class="sortby">
+        <span class="heading">Sort by</span>
+        <div class="capacity">
+          <div class="fields">
+            <label for="" class="label">Capacity (Low-High)</label>
+            <input
+              type="radio"
+              (change)="onSelect()"
+              name="capacity"
+              value="capacity-asc"
+              [(ngModel)]="capacitySelect"
+            />
+          </div>
+          <div class="fields">
+            <label for="" class="label">Capacity (High-Low)</label>
+            <input
+              type="radio"
+              name="capacity"
+              value="capacity-dsc"
+              [(ngModel)]="capacitySelect"
+              (change)="onSelect()"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="features-filter">
+        <p class="heading">Features</p>
+        <div class="items" *ngFor="let items of features; let i = index">
+          <mat-checkbox
+            [checked]="items.selected"
+            (change)="onCheckboxSelect(i, $event.checked)"
+            >{{ items.name }}</mat-checkbox
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="room-list">
+    <div class="room-card" *ngFor="let rooms of roomData; let i = index">
+      <img [src]="rooms.imageUrl" alt="" class="image" />
+      <div class="details">
+        <div class="room-info">
+          <div class="name-capacity">
+            <p class="label">{{ rooms.name }}</p>
+            <p class="label">Capacity : {{ rooms.capacity }} people</p>
+          </div>
+          <button
+            mat-raised-button
+            color="accent"
+            (click)="onBookNow(rooms.id, i)"
+          >
+            Book now
+          </button>
+        </div>
+        <div class="features" *ngIf="rooms.features.length > 0">
+          <span class="features-span" *ngFor="let features of rooms.features">{{
+            features
+          }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
