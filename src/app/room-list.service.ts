@@ -262,7 +262,6 @@ export class RoomListService {
   }
   cancelSlot(slot: string, booking: { [key: string]: any }) {
     const room = this.roomData.find(room => room.id == booking['roomId'])
-    console.log(room, "list")
     if (!room) return
     room?.avaibility.forEach(items => {
       if (items['date'] == booking['date']) {

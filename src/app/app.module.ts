@@ -17,15 +17,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import { ConfirmationSnackbarComponent } from './confirmation-snackbar/confirmation-snackbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RoomListComponent,
     ViewRoomComponent,
-    ViewBookingComponent,
-    ConfirmationSnackbarComponent,
+    ViewBookingComponent
   ],
   imports: [
     BrowserModule,

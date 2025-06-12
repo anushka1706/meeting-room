@@ -61,7 +61,11 @@ export class ViewRoomComponent implements OnInit {
     this.bookingForm.reset()
     this.BookingService.confirmationObservable.subscribe(value => {
       if (value) {
-        this.snackBar.open('Booking successful', 'Close', { duration: 3000 });
+        this.snackBar.open('Booking successful', 'Close', {
+          duration: 3000,
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+        });
       }
     })
   }
